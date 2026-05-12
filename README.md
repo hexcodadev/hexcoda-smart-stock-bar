@@ -43,6 +43,8 @@ The stock bar should appear on the single product page.
 
 See [docs/wordpress-org-checklist.md](docs/wordpress-org-checklist.md).
 
+Plugin Check should be run against a clean release package, not the full development repository. Development-only files such as `.github`, `.gitignore`, and `.gitattributes` are useful in GitHub but should not be included in the WordPress.org ZIP.
+
 ## License
 
 GPLv2 or later.

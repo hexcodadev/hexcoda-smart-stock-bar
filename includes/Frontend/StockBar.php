@@ -9,7 +9,7 @@ namespace HexCoda\SmartStockBar\Frontend;
 
 use WC_Product;
 
-use function HexCoda\SmartStockBar\Support\get_settings;
+use function HexCoda\SmartStockBar\Support\get_plugin_settings;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -23,7 +23,7 @@ final class StockBar {
 	 * @return void
 	 */
 	public function register(): void {
-		$settings = get_settings();
+		$settings = get_plugin_settings();
 
 		if ( empty( $settings['enabled'] ) ) {
 			return;
@@ -69,7 +69,7 @@ final class StockBar {
 			return;
 		}
 
-		$settings       = get_settings();
+		$settings       = get_plugin_settings();
 		$stock_quantity = max( 0, (int) $stock_quantity );
 		$threshold      = (int) $settings['threshold'];
 

@@ -8,7 +8,7 @@
 namespace HexCoda\SmartStockBar\Admin;
 
 use function HexCoda\SmartStockBar\Support\default_settings;
-use function HexCoda\SmartStockBar\Support\get_settings;
+use function HexCoda\SmartStockBar\Support\get_plugin_settings;
 use const HexCoda\SmartStockBar\Support\OPTION_NAME;
 
 defined( 'ABSPATH' ) || exit;
@@ -135,7 +135,7 @@ final class SettingsPage {
 			return;
 		}
 
-		$settings = get_settings();
+		$settings = get_plugin_settings();
 		?>
 		<div class="wrap hexcoda-admin">
 			<div class="hexcoda-admin__header">

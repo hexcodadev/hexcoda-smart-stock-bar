@@ -45,8 +45,6 @@ add_action(
 add_action(
 	'plugins_loaded',
 	static function () {
-		load_plugin_textdomain( 'hexcoda-smart-stock-bar', false, dirname( HEXCODA_SSB_BASENAME ) . '/languages' );
-
 		$plugin = new \HexCoda\SmartStockBar\Plugin();
 		$plugin->boot();
 	}

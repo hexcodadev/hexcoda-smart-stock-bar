@@ -14,7 +14,8 @@ Use this checklist before submitting HexCoda Smart Stock Bar to WordPress.org.
 
 - [ ] Run PHP syntax checks on all PHP files.
 - [ ] Run WordPress Coding Standards with `WordPress` and `WordPress-Extra` rulesets.
-- [ ] Run Plugin Check.
+- [ ] Build a clean release ZIP that excludes development-only files.
+- [ ] Run Plugin Check against the clean release folder or release ZIP.
 - [ ] Confirm all direct file access is blocked with `defined( 'ABSPATH' ) || exit;`.
 - [ ] Confirm all admin actions use capability checks.
 - [ ] Confirm all saved settings are sanitized.
@@ -62,6 +63,6 @@ Use this checklist before submitting HexCoda Smart Stock Bar to WordPress.org.
 ## Release
 
 - [ ] Tag release version.
-- [ ] Build release ZIP without development-only files.
+- [ ] Build release ZIP without development-only files such as `.git`, `.github`, `.gitignore`, `.gitattributes`, and docs used only for development.
 - [ ] Install release ZIP on a clean WordPress site.
 - [ ] Submit to WordPress.org plugin review.

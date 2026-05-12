@@ -36,7 +36,7 @@ function default_settings(): array {
  *
  * @return array<string, mixed>
  */
-function get_settings(): array {
+function get_plugin_settings(): array {
 	$saved = get_option( OPTION_NAME, array() );
 
 	if ( ! is_array( $saved ) ) {

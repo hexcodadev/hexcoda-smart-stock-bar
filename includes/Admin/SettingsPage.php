@@ -140,9 +140,18 @@ final class SettingsPage {
 		?>
 		<div class="wrap hexcoda-admin">
 			<div class="hexcoda-admin__header">
-				<p class="hexcoda-admin__eyebrow"><?php esc_html_e( 'HexCoda for WooCommerce', 'hexcoda-smart-stock-bar' ); ?></p>
-				<h1><?php esc_html_e( 'Smart Stock Bar', 'hexcoda-smart-stock-bar' ); ?></h1>
-				<p><?php esc_html_e( 'Show a focused stock progress bar on product pages without adding heavy urgency features.', 'hexcoda-smart-stock-bar' ); ?></p>
+				<div class="hexcoda-admin__brand">
+					<img src="<?php echo esc_url( HEXCODA_SSB_URL . 'assets/admin/hexcoda-logo.png' ); ?>" alt="<?php esc_attr_e( 'HexCoda', 'hexcoda-smart-stock-bar' ); ?>">
+					<span><?php esc_html_e( 'WooCommerce tool', 'hexcoda-smart-stock-bar' ); ?></span>
+				</div>
+				<div class="hexcoda-admin__intro">
+					<div>
+						<p class="hexcoda-admin__eyebrow"><?php esc_html_e( 'HexCoda for WooCommerce', 'hexcoda-smart-stock-bar' ); ?></p>
+						<h1><?php esc_html_e( 'Smart Stock Bar', 'hexcoda-smart-stock-bar' ); ?></h1>
+						<p><?php esc_html_e( 'Show a focused stock progress bar on product pages without adding heavy urgency features.', 'hexcoda-smart-stock-bar' ); ?></p>
+					</div>
+					<span class="hexcoda-admin__version"><?php echo esc_html( 'v' . HEXCODA_SSB_VERSION ); ?></span>
+				</div>
 			</div>
 
 			<form action="options.php" method="post" class="hexcoda-panel">
@@ -222,7 +231,9 @@ final class SettingsPage {
 					</tr>
 				</table>
 
-				<?php submit_button(); ?>
+				<div class="hexcoda-actions">
+					<?php submit_button( __( 'Save settings', 'hexcoda-smart-stock-bar' ), 'primary', 'submit', false ); ?>
+				</div>
 			</form>
 		</div>
 		<?php

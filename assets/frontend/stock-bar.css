@@ -1,12 +1,12 @@
 .hexcoda-ssb {
-	--hexcoda-ssb-bar-color: #16a34a;
-	--hexcoda-ssb-track-color: #e5e7eb;
+	--hexcoda-ssb-bar-color: #a7ca4f;
+	--hexcoda-ssb-track-color: #e7eadf;
 	--hexcoda-ssb-percent: 0%;
-	margin: 12px 0 16px;
+	margin: 14px 0 18px;
 }
 
 .hexcoda-ssb__message {
-	color: #1f2937;
+	color: #1f2329;
 	font-size: 14px;
 	font-weight: 600;
 	line-height: 1.4;
@@ -16,7 +16,7 @@
 .hexcoda-ssb__track {
 	background: var(--hexcoda-ssb-track-color);
 	border-radius: 999px;
-	height: 8px;
+	height: 7px;
 	overflow: hidden;
 	width: 100%;
 }

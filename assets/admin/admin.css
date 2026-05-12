@@ -1,43 +1,214 @@
 .hexcoda-admin {
-	max-width: 920px;
+	--hexcoda-accent: #a7ca4f;
+	--hexcoda-accent-dark: #8cad3c;
+	--hexcoda-border: #dfe5d3;
+	--hexcoda-muted: #657084;
+	--hexcoda-surface: #ffffff;
+	--hexcoda-text: #1f2329;
+	color: var(--hexcoda-text);
+	max-width: 980px;
 }
 
 .hexcoda-admin__header {
+	background: linear-gradient(135deg, #ffffff 0%, #f7faef 100%);
+	border: 1px solid var(--hexcoda-border);
+	border-radius: 8px;
+	box-shadow: 0 1px 2px rgba(31, 35, 41, 0.04);
 	margin: 24px 0 18px;
+	overflow: hidden;
+}
+
+.hexcoda-admin__brand {
+	align-items: center;
+	background: var(--hexcoda-surface);
+	border-bottom: 1px solid var(--hexcoda-border);
+	display: flex;
+	justify-content: space-between;
+	padding: 18px 22px;
+}
+
+.hexcoda-admin__brand img {
+	display: block;
+	height: auto;
+	max-width: 176px;
+}
+
+.hexcoda-admin__brand span {
+	background: #f0f6df;
+	border: 1px solid #d8e8ae;
+	border-radius: 999px;
+	color: #587020;
+	font-size: 12px;
+	font-weight: 700;
+	line-height: 1;
+	padding: 8px 10px;
+	text-transform: uppercase;
+}
+
+.hexcoda-admin__intro {
+	align-items: flex-start;
+	display: flex;
+	gap: 18px;
+	justify-content: space-between;
+	padding: 26px 22px 28px;
 }
 
 .hexcoda-admin__header h1 {
-	margin-bottom: 8px;
+	color: var(--hexcoda-text);
+	font-size: 28px;
+	font-weight: 650;
+	line-height: 1.2;
+	margin: 0 0 8px;
+	padding: 0;
 }
 
 .hexcoda-admin__header p {
+	color: var(--hexcoda-muted);
+	font-size: 14px;
+	line-height: 1.6;
+	margin: 0;
 	max-width: 680px;
 }
 
 .hexcoda-admin__eyebrow {
-	color: #2563eb;
+	color: var(--hexcoda-accent-dark);
 	font-size: 12px;
-	font-weight: 700;
+	font-weight: 800;
 	letter-spacing: 0;
 	margin: 0 0 6px;
 	text-transform: uppercase;
 }
 
+.hexcoda-admin__version {
+	background: var(--hexcoda-accent);
+	border-radius: 999px;
+	color: #ffffff;
+	display: inline-flex;
+	font-size: 12px;
+	font-weight: 800;
+	line-height: 1;
+	padding: 8px 10px;
+}
+
 .hexcoda-panel {
-	background: #fff;
-	border: 1px solid #dcdcde;
+	background: var(--hexcoda-surface);
+	border: 1px solid var(--hexcoda-border);
+	border-radius: 8px;
+	box-shadow: 0 1px 2px rgba(31, 35, 41, 0.04);
+	overflow: hidden;
+	padding: 0;
+}
+
+.hexcoda-panel .form-table {
+	margin: 0;
+}
+
+.hexcoda-panel .form-table tr {
+	border-bottom: 1px solid #eef2e5;
+}
+
+.hexcoda-panel .form-table tr:last-child {
+	border-bottom: 0;
+}
+
+.hexcoda-panel .form-table th {
+	color: var(--hexcoda-text);
+	font-weight: 700;
+	padding: 22px 24px;
+	width: 220px;
+}
+
+.hexcoda-panel .form-table td {
+	padding: 19px 24px;
+}
+
+.hexcoda-panel input[type="text"],
+.hexcoda-panel input[type="number"],
+.hexcoda-panel select {
+	border-color: #ccd6b8;
 	border-radius: 6px;
-	padding: 8px 22px 18px;
+	color: var(--hexcoda-text);
+	min-height: 38px;
+}
+
+.hexcoda-panel input[type="text"]:focus,
+.hexcoda-panel input[type="number"]:focus,
+.hexcoda-panel select:focus {
+	border-color: var(--hexcoda-accent-dark);
+	box-shadow: 0 0 0 1px var(--hexcoda-accent-dark);
+}
+
+.hexcoda-panel input[type="checkbox"] {
+	accent-color: var(--hexcoda-accent-dark);
+}
+
+.hexcoda-panel .description {
+	color: var(--hexcoda-muted);
+	margin-top: 7px;
 }
 
 .hexcoda-color-row {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 16px;
+	gap: 18px;
 }
 
 .hexcoda-color-row label {
 	align-items: center;
 	display: inline-flex;
 	gap: 8px;
+}
+
+.hexcoda-color-row input[type="color"] {
+	border-color: #ccd6b8;
+	border-radius: 6px;
+	height: 34px;
+	padding: 3px;
+	width: 52px;
+}
+
+.hexcoda-actions {
+	background: #fbfcf7;
+	border-top: 1px solid var(--hexcoda-border);
+	padding: 18px 24px;
+}
+
+.hexcoda-actions .button-primary {
+	background: var(--hexcoda-accent);
+	border-color: var(--hexcoda-accent);
+	border-radius: 6px;
+	color: #ffffff;
+	font-weight: 700;
+	min-height: 38px;
+	padding: 0 18px;
+}
+
+.hexcoda-actions .button-primary:focus,
+.hexcoda-actions .button-primary:hover {
+	background: var(--hexcoda-accent-dark);
+	border-color: var(--hexcoda-accent-dark);
+	color: #ffffff;
+}
+
+@media (max-width: 782px) {
+	.hexcoda-admin__brand,
+	.hexcoda-admin__intro {
+		display: block;
+	}
+
+	.hexcoda-admin__brand span,
+	.hexcoda-admin__version {
+		margin-top: 12px;
+	}
+
+	.hexcoda-panel .form-table th,
+	.hexcoda-panel .form-table td {
+		display: block;
+		padding: 16px 20px;
+		width: auto;
+	}
+
+	.hexcoda-panel .form-table td {
+		padding-top: 0;
+	}
 }

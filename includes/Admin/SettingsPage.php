@@ -102,6 +102,7 @@ final class SettingsPage {
 		$settings['track_color']   = sanitize_hex_color( $input['track_color'] ?? $defaults['track_color'] ) ?: $defaults['track_color'];
 		$settings['message']       = sanitize_text_field( $input['message'] ?? $defaults['message'] );
 		$settings['show_on_empty'] = ! empty( $input['show_on_empty'] );
+		$settings['hide_default']  = ! empty( $input['hide_default'] );
 
 		return $settings;
 	}
@@ -207,6 +208,15 @@ final class SettingsPage {
 							<label>
 								<input type="checkbox" name="<?php echo esc_attr( OPTION_NAME ); ?>[show_on_empty]" value="1" <?php checked( $settings['show_on_empty'] ); ?>>
 								<?php esc_html_e( 'Show an empty bar when product stock is 0.', 'hexcoda-smart-stock-bar' ); ?>
+							</label>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><?php esc_html_e( 'Default stock text', 'hexcoda-smart-stock-bar' ); ?></th>
+						<td>
+							<label>
+								<input type="checkbox" name="<?php echo esc_attr( OPTION_NAME ); ?>[hide_default]" value="1" <?php checked( $settings['hide_default'] ); ?>>
+								<?php esc_html_e( 'Hide the default WooCommerce stock availability text on single product pages.', 'hexcoda-smart-stock-bar' ); ?>
 							</label>
 						</td>
 					</tr>

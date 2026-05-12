@@ -28,6 +28,7 @@ function default_settings(): array {
 		'track_color'   => '#e5e7eb',
 		'message'       => __( 'Only {stock} left in stock', 'hexcoda-smart-stock-bar' ),
 		'show_on_empty' => false,
+		'hide_default'  => false,
 	);
 }
 

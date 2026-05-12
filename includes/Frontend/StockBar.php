@@ -30,6 +30,11 @@ final class StockBar {
 		}
 
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_assets' ) );
+
+		if ( ! empty( $settings['hide_default'] ) ) {
+			add_filter( 'woocommerce_get_stock_html', array( $this, 'maybe_hide_default_stock_html' ), 10, 2 );
+		}
+
 		$this->register_position_hook( (string) $settings['position'] );
 	}
 
@@ -63,24 +68,13 @@ final class StockBar {
 			return;
 		}
 
-		$stock_quantity = $product->get_stock_quantity();
-
-		if ( null === $stock_quantity || ! $product->managing_stock() ) {
+		if ( ! $this->is_product_eligible( $product ) ) {
 			return;
 		}
 
+		$stock_quantity = $product->get_stock_quantity();
 		$settings       = get_plugin_settings();
 		$stock_quantity = max( 0, (int) $stock_quantity );
-		$threshold      = (int) $settings['threshold'];
-
-		if ( 0 === $stock_quantity && empty( $settings['show_on_empty'] ) ) {
-			return;
-		}
-
-		if ( $threshold > 0 && $stock_quantity > $threshold ) {
-			return;
-		}
-
 		$total_stock = max( 1, (int) $settings['total_stock'] );
 		$percentage  = min( 100, max( 0, ( $stock_quantity / $total_stock ) * 100 ) );
 		$message     = str_replace( '{stock}', (string) $stock_quantity, (string) $settings['message'] );
@@ -93,6 +87,21 @@ final class StockBar {
 			</div>
 		</div>
 		<?php
+	}
+
+	/**
+	 * Hide WooCommerce's default stock text for products where this plugin can display a bar.
+	 *
+	 * @param string     $html    Default stock availability HTML.
+	 * @param WC_Product $product Product object.
+	 * @return string
+	 */
+	public function maybe_hide_default_stock_html( string $html, WC_Product $product ): string {
+		if ( $this->is_product_eligible( $product ) ) {
+			return '';
+		}
+
+		return $html;
 	}
 
 	/**
@@ -114,6 +123,30 @@ final class StockBar {
 				add_action( 'woocommerce_single_product_summary', array( $this, 'render' ), 11 );
 				break;
 		}
+	}
+
+	/**
+	 * Determine whether a product is eligible for the stock bar.
+	 *
+	 * @param WC_Product $product Product object.
+	 * @return bool
+	 */
+	private function is_product_eligible( WC_Product $product ): bool {
+		$stock_quantity = $product->get_stock_quantity();
+
+		if ( null === $stock_quantity || ! $product->managing_stock() ) {
+			return false;
+		}
+
+		$settings       = get_plugin_settings();
+		$stock_quantity = max( 0, (int) $stock_quantity );
+		$threshold      = (int) $settings['threshold'];
+
+		if ( 0 === $stock_quantity && empty( $settings['show_on_empty'] ) ) {
+			return false;
+		}
+
+		return 0 === $threshold || $stock_quantity <= $threshold;
 	}
 
 	/**

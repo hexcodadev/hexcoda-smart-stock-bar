@@ -1,0 +1,30 @@
+.hexcoda-ssb {
+	--hexcoda-ssb-bar-color: #16a34a;
+	--hexcoda-ssb-track-color: #e5e7eb;
+	--hexcoda-ssb-percent: 0%;
+	margin: 12px 0 16px;
+}
+
+.hexcoda-ssb__message {
+	color: #1f2937;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1.4;
+	margin-bottom: 8px;
+}
+
+.hexcoda-ssb__track {
+	background: var(--hexcoda-ssb-track-color);
+	border-radius: 999px;
+	height: 8px;
+	overflow: hidden;
+	width: 100%;
+}
+
+.hexcoda-ssb__bar {
+	background: var(--hexcoda-ssb-bar-color);
+	border-radius: inherit;
+	display: block;
+	height: 100%;
+	width: var(--hexcoda-ssb-percent);
+}

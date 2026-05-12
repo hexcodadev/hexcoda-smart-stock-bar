@@ -1,0 +1,43 @@
+.hexcoda-admin {
+	max-width: 920px;
+}
+
+.hexcoda-admin__header {
+	margin: 24px 0 18px;
+}
+
+.hexcoda-admin__header h1 {
+	margin-bottom: 8px;
+}
+
+.hexcoda-admin__header p {
+	max-width: 680px;
+}
+
+.hexcoda-admin__eyebrow {
+	color: #2563eb;
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: 0;
+	margin: 0 0 6px;
+	text-transform: uppercase;
+}
+
+.hexcoda-panel {
+	background: #fff;
+	border: 1px solid #dcdcde;
+	border-radius: 6px;
+	padding: 8px 22px 18px;
+}
+
+.hexcoda-color-row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+}
+
+.hexcoda-color-row label {
+	align-items: center;
+	display: inline-flex;
+	gap: 8px;
+}

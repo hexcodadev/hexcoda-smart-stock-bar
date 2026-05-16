@@ -32,8 +32,15 @@
 .hexcoda-topbar__identity {
 	align-items: center;
 	display: flex;
-	gap: 0;
+	gap: 16px;
 	min-width: 0;
+}
+
+.hexcoda-topbar__logo {
+	display: block;
+	flex: 0 0 auto;
+	height: auto;
+	max-width: 132px;
 }
 
 .hexcoda-title-row {
@@ -302,16 +309,91 @@
 	background: linear-gradient(135deg, #eef4f7, #f8fafc);
 	border: 1px solid #d9e0e7;
 	border-radius: 8px;
-	color: #7b97a6;
 	display: flex;
 	height: 178px;
 	justify-content: center;
 }
 
-.hexcoda-preview__image .dashicons {
-	font-size: 82px;
-	height: 82px;
-	width: 82px;
+.hexcoda-product-mock {
+	height: 116px;
+	position: relative;
+	width: 110px;
+}
+
+.hexcoda-product-mock__hood {
+	background: #d9eef4;
+	border: 3px solid #7a9ba5;
+	border-bottom: 0;
+	border-radius: 42px 42px 20px 20px;
+	height: 42px;
+	left: 31px;
+	position: absolute;
+	top: 0;
+	width: 48px;
+}
+
+.hexcoda-product-mock__hood::before,
+.hexcoda-product-mock__hood::after {
+	background: #7a9ba5;
+	content: "";
+	height: 30px;
+	position: absolute;
+	top: 30px;
+	width: 2px;
+}
+
+.hexcoda-product-mock__hood::before {
+	left: 17px;
+	transform: rotate(10deg);
+}
+
+.hexcoda-product-mock__hood::after {
+	right: 17px;
+	transform: rotate(-10deg);
+}
+
+.hexcoda-product-mock__body {
+	background: #d9eef4;
+	border: 3px solid #7a9ba5;
+	border-radius: 22px 22px 14px 14px;
+	height: 70px;
+	left: 18px;
+	position: absolute;
+	top: 34px;
+	width: 74px;
+}
+
+.hexcoda-product-mock__body::before,
+.hexcoda-product-mock__body::after {
+	background: #d9eef4;
+	border: 3px solid #7a9ba5;
+	border-radius: 16px;
+	content: "";
+	height: 52px;
+	position: absolute;
+	top: 7px;
+	width: 24px;
+}
+
+.hexcoda-product-mock__body::before {
+	left: -20px;
+	transform: rotate(22deg);
+}
+
+.hexcoda-product-mock__body::after {
+	right: -20px;
+	transform: rotate(-22deg);
+}
+
+.hexcoda-product-mock__pocket {
+	border: 3px solid #7a9ba5;
+	border-radius: 0 0 18px 18px;
+	border-top: 0;
+	height: 16px;
+	left: 40px;
+	position: absolute;
+	top: 70px;
+	width: 30px;
 }
 
 .hexcoda-preview__content h3 {

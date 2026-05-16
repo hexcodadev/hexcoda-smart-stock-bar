@@ -100,6 +100,7 @@ final class SettingsPage {
 		$settings['threshold']                   = isset( $input['threshold'] ) ? max( 0, absint( $input['threshold'] ) ) : $defaults['threshold'];
 		$settings['medium_threshold']            = isset( $input['medium_threshold'] ) ? max( 0, absint( $input['medium_threshold'] ) ) : $defaults['medium_threshold'];
 		$settings['medium_threshold']            = max( $settings['threshold'], $settings['medium_threshold'] );
+		$settings['total_stock']                 = max( $settings['total_stock'], $settings['medium_threshold'] );
 		$settings['low_label']                   = $this->sanitize_label( $input['low_label'] ?? $defaults['low_label'] );
 		$settings['medium_label']                = $this->sanitize_label( $input['medium_label'] ?? $defaults['medium_label'] );
 		$settings['high_label']                  = $this->sanitize_label( $input['high_label'] ?? $defaults['high_label'] );
@@ -153,6 +154,7 @@ final class SettingsPage {
 		}
 
 		$settings        = get_plugin_settings();
+		$settings        = $this->normalize_threshold_settings( $settings );
 		$low_color       = sanitize_hex_color( $settings['low_color'] ?? '#ef3b1a' ) ?: '#ef3b1a';
 		$medium_color    = sanitize_hex_color( $settings['medium_color'] ?? '#f6c21a' ) ?: '#f6c21a';
 		$high_color      = sanitize_hex_color( $settings['high_color'] ?? '#5a9b3f' ) ?: '#5a9b3f';
@@ -169,6 +171,7 @@ final class SettingsPage {
 
 				<header class="hexcoda-topbar">
 					<div class="hexcoda-topbar__identity">
+						<img class="hexcoda-topbar__logo" src="<?php echo esc_url( HEXCODA_SSB_URL . 'assets/admin/hexcoda-logo.png' ); ?>" alt="<?php esc_attr_e( 'HexCoda', 'hexcoda-smart-stock-bar' ); ?>">
 						<div>
 							<div class="hexcoda-title-row">
 								<h1><?php esc_html_e( 'HexCoda Smart Stock Bar for WooCommerce', 'hexcoda-smart-stock-bar' ); ?></h1>
@@ -224,7 +227,11 @@ final class SettingsPage {
 							<h2><?php esc_html_e( 'Live Preview', 'hexcoda-smart-stock-bar' ); ?></h2>
 							<div class="hexcoda-preview__product">
 								<div class="hexcoda-preview__image" aria-hidden="true">
-									<span class="dashicons dashicons-products"></span>
+									<div class="hexcoda-product-mock">
+										<span class="hexcoda-product-mock__hood"></span>
+										<span class="hexcoda-product-mock__body"></span>
+										<span class="hexcoda-product-mock__pocket"></span>
+									</div>
 								</div>
 								<div class="hexcoda-preview__content">
 									<h3><?php esc_html_e( 'Premium Hoodie', 'hexcoda-smart-stock-bar' ); ?></h3>
@@ -405,6 +412,20 @@ final class SettingsPage {
 	 */
 	private function sanitize_label( $label ): string {
 		return sanitize_text_field( (string) $label );
+	}
+
+	/**
+	 * Normalize threshold relationships for display.
+	 *
+	 * @param array<string, mixed> $settings Plugin settings.
+	 * @return array<string, mixed>
+	 */
+	private function normalize_threshold_settings( array $settings ): array {
+		$settings['threshold']        = max( 0, (int) $settings['threshold'] );
+		$settings['medium_threshold'] = max( $settings['threshold'], (int) $settings['medium_threshold'] );
+		$settings['total_stock']      = max( 1, (int) $settings['total_stock'], $settings['medium_threshold'] );
+
+		return $settings;
 	}
 
 	/**

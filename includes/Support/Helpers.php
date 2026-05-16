@@ -68,10 +68,6 @@ function get_plugin_settings(): array {
 		$settings['high_color'] = (string) $saved['bar_color'];
 	}
 
-	if ( ! array_key_exists( 'hide_variation_availability', $saved ) && ! empty( $saved['hide_default'] ) ) {
-		$settings['hide_variation_availability'] = true;
-	}
-
 	return $settings;
 }
 

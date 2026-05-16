@@ -77,6 +77,7 @@ final class StockBar {
 		}
 
 		$settings       = get_plugin_settings();
+		$settings       = $this->normalize_threshold_settings( $settings );
 		$stock_quantity = max( 0, (int) $product->get_stock_quantity() );
 		$total_stock    = max( 1, (int) $settings['total_stock'] );
 		$percentage     = min( 100, max( 0, ( $stock_quantity / $total_stock ) * 100 ) );
@@ -157,6 +158,7 @@ final class StockBar {
 		}
 
 		$settings       = get_plugin_settings();
+		$settings       = $this->normalize_threshold_settings( $settings );
 		$stock_quantity = max( 0, (int) $stock_quantity );
 
 		if ( 0 === $stock_quantity && empty( $settings['show_on_empty'] ) ) {
@@ -186,6 +188,20 @@ final class StockBar {
 		}
 
 		return 'high';
+	}
+
+	/**
+	 * Normalize threshold relationships.
+	 *
+	 * @param array<string, mixed> $settings Plugin settings.
+	 * @return array<string, mixed>
+	 */
+	private function normalize_threshold_settings( array $settings ): array {
+		$settings['threshold']        = max( 0, (int) $settings['threshold'] );
+		$settings['medium_threshold'] = max( $settings['threshold'], (int) $settings['medium_threshold'] );
+		$settings['total_stock']      = max( 1, (int) $settings['total_stock'], $settings['medium_threshold'] );
+
+		return $settings;
 	}
 
 	/**

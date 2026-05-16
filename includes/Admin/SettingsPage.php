@@ -189,17 +189,6 @@ final class SettingsPage {
 					</div>
 				</header>
 
-				<nav class="hexcoda-tabs" aria-label="<?php esc_attr_e( 'Settings sections', 'hexcoda-smart-stock-bar' ); ?>">
-					<a class="hexcoda-tab hexcoda-tab--active" href="#hexcoda-general">
-						<span class="dashicons dashicons-admin-generic"></span>
-						<?php esc_html_e( 'General', 'hexcoda-smart-stock-bar' ); ?>
-					</a>
-					<a class="hexcoda-tab" href="#hexcoda-style">
-						<span class="dashicons dashicons-admin-customizer"></span>
-						<?php esc_html_e( 'Style', 'hexcoda-smart-stock-bar' ); ?>
-					</a>
-				</nav>
-
 				<div class="hexcoda-grid">
 					<section id="hexcoda-general" class="hexcoda-card hexcoda-card--general">
 						<h2><?php esc_html_e( 'General Settings', 'hexcoda-smart-stock-bar' ); ?></h2>

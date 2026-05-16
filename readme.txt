@@ -4,7 +4,7 @@ Tags: woocommerce, stock, inventory, urgency, product page
 Requires at least: 6.4
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 0.2.0
+Stable tag: 0.2.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,12 @@ No. This plugin does not track users or send data to external services.
 2. Plugin settings under WooCommerce > HexCoda Stock Bar.
 
 == Changelog ==
+
+= 0.2.1 =
+* Polished the admin header, footer, and settings layout.
+* Improved admin notice placement so notices appear above the HexCoda interface.
+* Added the main plugin features card and footer save action.
+* Refined the settings order for stock cap and thresholds.
 
 = 0.2.0 =
 * Added low, medium, and high stock state logic.

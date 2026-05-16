@@ -166,16 +166,15 @@ final class SettingsPage {
 		$preview_percent = 54;
 		?>
 		<div class="wrap hexcoda-admin">
+			<h1 class="screen-reader-text"><?php esc_html_e( 'HexCoda Smart Stock Bar for WooCommerce', 'hexcoda-smart-stock-bar' ); ?></h1>
 			<form action="options.php" method="post" class="hexcoda-app">
 				<?php settings_fields( self::GROUP ); ?>
 
 				<header class="hexcoda-topbar">
 					<div class="hexcoda-topbar__identity">
-						<img class="hexcoda-topbar__logo" src="<?php echo esc_url( HEXCODA_SSB_URL . 'assets/admin/hexcoda-logo.png' ); ?>" alt="<?php esc_attr_e( 'HexCoda', 'hexcoda-smart-stock-bar' ); ?>">
 						<div>
 							<div class="hexcoda-title-row">
-								<h1><?php esc_html_e( 'HexCoda Smart Stock Bar for WooCommerce', 'hexcoda-smart-stock-bar' ); ?></h1>
-								<span><?php esc_html_e( 'Lite', 'hexcoda-smart-stock-bar' ); ?></span>
+								<div class="hexcoda-product-title"><?php esc_html_e( 'HexCoda Smart Stock Bar for WooCommerce', 'hexcoda-smart-stock-bar' ); ?></div>
 							</div>
 							<p><?php esc_html_e( 'Visual stock urgency for better conversions', 'hexcoda-smart-stock-bar' ); ?></p>
 						</div>
@@ -198,8 +197,8 @@ final class SettingsPage {
 
 						<?php $this->render_toggle_field( 'enabled', __( 'Enable Stock Bar', 'hexcoda-smart-stock-bar' ), __( 'Enable or disable the stock bar on product pages.', 'hexcoda-smart-stock-bar' ), ! empty( $settings['enabled'] ) ); ?>
 						<?php $this->render_number_field( 'total_stock', __( 'Maximum Stock Cap', 'hexcoda-smart-stock-bar' ), __( 'The stock bar will treat any stock above this value as 100%.', 'hexcoda-smart-stock-bar' ), (int) $settings['total_stock'], 1 ); ?>
-						<?php $this->render_number_field( 'threshold', __( 'Low Stock Threshold', 'hexcoda-smart-stock-bar' ), __( 'Stock at or below this value is considered low stock.', 'hexcoda-smart-stock-bar' ), (int) $settings['threshold'], 0 ); ?>
 						<?php $this->render_number_field( 'medium_threshold', __( 'Medium Stock Threshold', 'hexcoda-smart-stock-bar' ), __( 'Stock above this value is considered medium stock.', 'hexcoda-smart-stock-bar' ), (int) $settings['medium_threshold'], 0 ); ?>
+						<?php $this->render_number_field( 'threshold', __( 'Low Stock Threshold', 'hexcoda-smart-stock-bar' ), __( 'Stock at or below this value is considered low stock.', 'hexcoda-smart-stock-bar' ), (int) $settings['threshold'], 0 ); ?>
 						<?php $this->render_text_field( 'low_label', __( 'Low Stock Label', 'hexcoda-smart-stock-bar' ), __( 'Label text to display when stock is low.', 'hexcoda-smart-stock-bar' ), (string) $settings['low_label'] ); ?>
 						<?php $this->render_text_field( 'medium_label', __( 'Medium Stock Label', 'hexcoda-smart-stock-bar' ), __( 'Label text to display when stock is medium.', 'hexcoda-smart-stock-bar' ), (string) $settings['medium_label'] ); ?>
 						<?php $this->render_text_field( 'high_label', __( 'High Stock Label', 'hexcoda-smart-stock-bar' ), __( 'Label text to display when stock is high.', 'hexcoda-smart-stock-bar' ), (string) $settings['high_label'] ); ?>
@@ -273,13 +272,31 @@ final class SettingsPage {
 								<?php $this->render_compact_number_field( 'spacing_top', __( 'Top Spacing (px)', 'hexcoda-smart-stock-bar' ), $spacing_top, 0 ); ?>
 								<?php $this->render_compact_number_field( 'spacing_bottom', __( 'Bottom Spacing (px)', 'hexcoda-smart-stock-bar' ), $spacing_bottom, 0 ); ?>
 							</div>
-							<p class="hexcoda-style-card__note">
-								<span class="dashicons dashicons-info-outline"></span>
-								<?php esc_html_e( 'Go to the Style tab for advanced styling options.', 'hexcoda-smart-stock-bar' ); ?>
-							</p>
+						</section>
+
+						<section class="hexcoda-card hexcoda-features-card">
+							<h2><?php esc_html_e( 'Main Plugin Features', 'hexcoda-smart-stock-bar' ); ?></h2>
+							<ul>
+								<li><?php esc_html_e( 'Uses existing WooCommerce stock data', 'hexcoda-smart-stock-bar' ); ?></li>
+								<li><?php esc_html_e( 'Focused frontend output', 'hexcoda-smart-stock-bar' ); ?></li>
+								<li><?php esc_html_e( 'Lightweight configuration', 'hexcoda-smart-stock-bar' ); ?></li>
+								<li><?php esc_html_e( 'Designed for performance and practical use', 'hexcoda-smart-stock-bar' ); ?></li>
+							</ul>
 						</section>
 					</aside>
 				</div>
+
+				<footer class="hexcoda-footer">
+					<button class="hexcoda-button hexcoda-button--primary" type="submit">
+						<span class="dashicons dashicons-saved"></span>
+						<?php esc_html_e( 'Save Changes', 'hexcoda-smart-stock-bar' ); ?>
+					</button>
+					<p>
+						<?php esc_html_e( 'Built by', 'hexcoda-smart-stock-bar' ); ?>
+						<a href="https://hexcoda.com/" target="_blank" rel="noopener noreferrer">HexCoda</a>
+						<span><?php esc_html_e( 'Premium WordPress and WooCommerce plugins for cleaner online stores.', 'hexcoda-smart-stock-bar' ); ?></span>
+					</p>
+				</footer>
 			</form>
 		</div>
 		<?php
@@ -374,6 +391,7 @@ final class SettingsPage {
 	 */
 	private function render_color_field( string $key, string $label, string $value ): void {
 		$field_id = 'hexcoda-ssb-' . str_replace( '_', '-', $key );
+		$value    = sanitize_hex_color( $value ) ?: '#000000';
 		?>
 		<label class="hexcoda-style-field hexcoda-style-field--color" for="<?php echo esc_attr( $field_id ); ?>">
 			<span><?php echo esc_html( $label ); ?></span>

@@ -20,15 +20,29 @@ const OPTION_NAME = 'hexcoda_ssb_settings';
  */
 function default_settings(): array {
 	return array(
-		'enabled'       => true,
-		'threshold'     => 20,
-		'total_stock'   => 20,
-		'position'      => 'after_price',
-		'bar_color'     => '#a7ca4f',
-		'track_color'   => '#e7eadf',
-		'message'       => __( 'Only {stock} left in stock', 'hexcoda-smart-stock-bar' ),
-		'show_on_empty' => false,
-		'hide_default'  => false,
+		'enabled'                     => true,
+		'total_stock'                 => 100,
+		'threshold'                   => 10,
+		'medium_threshold'            => 30,
+		'low_label'                   => __( 'Only a few left', 'hexcoda-smart-stock-bar' ),
+		'medium_label'                => __( 'In stock', 'hexcoda-smart-stock-bar' ),
+		'high_label'                  => __( 'Plenty available', 'hexcoda-smart-stock-bar' ),
+		'hide_variation_availability' => false,
+		'show_on_empty'               => true,
+		'position'                    => 'below_add_to_cart',
+		'low_color'                   => '#ef3b1a',
+		'medium_color'                => '#f6c21a',
+		'high_color'                  => '#5a9b3f',
+		'track_color'                 => '#d9dee5',
+		'font_size'                   => 14,
+		'bar_height'                  => 8,
+		'spacing_top'                 => 12,
+		'spacing_bottom'              => 12,
+
+		// Legacy keys retained for compatibility with 0.1.x installs.
+		'bar_color'                   => '#a7ca4f',
+		'message'                     => __( 'Only {stock} left in stock', 'hexcoda-smart-stock-bar' ),
+		'hide_default'                => false,
 	);
 }
 
@@ -44,7 +58,21 @@ function get_plugin_settings(): array {
 		$saved = array();
 	}
 
-	return wp_parse_args( $saved, default_settings() );
+	$settings = wp_parse_args( $saved, default_settings() );
+
+	if ( ! array_key_exists( 'low_label', $saved ) && ! empty( $saved['message'] ) ) {
+		$settings['low_label'] = (string) $saved['message'];
+	}
+
+	if ( ! array_key_exists( 'high_color', $saved ) && ! empty( $saved['bar_color'] ) ) {
+		$settings['high_color'] = (string) $saved['bar_color'];
+	}
+
+	if ( ! array_key_exists( 'hide_variation_availability', $saved ) && ! empty( $saved['hide_default'] ) ) {
+		$settings['hide_variation_availability'] = true;
+	}
+
+	return $settings;
 }
 
 /**

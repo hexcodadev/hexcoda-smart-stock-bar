@@ -1,13 +1,17 @@
 .hexcoda-ssb {
-	--hexcoda-ssb-bar-color: #a7ca4f;
-	--hexcoda-ssb-track-color: #e7eadf;
+	--hexcoda-ssb-bar-color: #5a9b3f;
+	--hexcoda-ssb-track-color: #d9dee5;
 	--hexcoda-ssb-percent: 0%;
-	margin: 14px 0 18px;
+	--hexcoda-ssb-font-size: 14px;
+	--hexcoda-ssb-bar-height: 8px;
+	--hexcoda-ssb-spacing-top: 12px;
+	--hexcoda-ssb-spacing-bottom: 12px;
+	margin: var(--hexcoda-ssb-spacing-top) 0 var(--hexcoda-ssb-spacing-bottom);
 }
 
 .hexcoda-ssb__message {
 	color: #1f2329;
-	font-size: 14px;
+	font-size: var(--hexcoda-ssb-font-size);
 	font-weight: 600;
 	line-height: 1.4;
 	margin-bottom: 8px;
@@ -16,7 +20,7 @@
 .hexcoda-ssb__track {
 	background: var(--hexcoda-ssb-track-color);
 	border-radius: 999px;
-	height: 7px;
+	height: var(--hexcoda-ssb-bar-height);
 	overflow: hidden;
 	width: 100%;
 }

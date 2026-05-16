@@ -12,11 +12,11 @@ One small plugin. One useful WooCommerce improvement. No bloat.
 
 - Show a stock progress bar on WooCommerce product pages.
 - Display only when stock is managed by WooCommerce.
-- Optional low-stock threshold.
-- Configurable reference stock amount for progress calculation.
-- Custom message with `{stock}` placeholder.
-- Basic color controls.
+- Low, medium, and high stock states.
+- Configurable maximum stock cap for progress calculation.
+- Custom labels for each stock state.
 - Display position control.
+- Style controls for state colors, background, font size, bar height, and spacing.
 - No tracking and no external services.
 
 ## Local Development

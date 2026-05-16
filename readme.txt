@@ -4,7 +4,7 @@ Tags: woocommerce, stock, inventory, urgency, product page
 Requires at least: 6.4
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 0.1.0
+Stable tag: 0.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,10 +19,13 @@ The plugin is built to do one job cleanly: display a stock bar when WooCommerce 
 = Features =
 
 * Show a stock progress bar on product pages
-* Display the bar only when stock is under a configurable threshold
-* Customize the message with a stock quantity placeholder
+* Low, medium, and high stock states
+* Configurable maximum stock cap
+* Custom labels for each stock state
 * Choose where the bar appears on the product page
-* Customize bar and track colors
+* Customize low, medium, high, and background colors
+* Customize font size, bar height, and spacing
+* Optionally hide WooCommerce variation availability text
 * Lightweight frontend CSS
 * No tracking and no external services
 
@@ -53,6 +56,12 @@ No. This plugin does not track users or send data to external services.
 2. Plugin settings under WooCommerce > HexCoda Stock Bar.
 
 == Changelog ==
+
+= 0.2.0 =
+* Added low, medium, and high stock state logic.
+* Added expanded admin settings UI with live preview and style controls.
+* Added configurable maximum stock cap, state labels, colors, font size, bar height, and spacing.
+* Added WooCommerce variation availability hiding option.
 
 = 0.1.0 =
 * Initial development release.

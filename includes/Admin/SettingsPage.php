@@ -242,12 +242,22 @@ final class SettingsPage {
 				<aside class="hexcoda-preview-card" aria-labelledby="hexcoda-preview-title">
 					<h2 id="hexcoda-preview-title"><?php esc_html_e( 'Live Preview', 'hexcoda-smart-stock-bar' ); ?></h2>
 					<div class="hexcoda-preview-card__block">
+						<p class="hexcoda-preview-card__label"><?php esc_html_e( 'Example product stock', 'hexcoda-smart-stock-bar' ); ?></p>
 						<p class="hexcoda-preview-card__message"><?php esc_html_e( 'Only 4 left in stock', 'hexcoda-smart-stock-bar' ); ?></p>
 						<div class="hexcoda-preview-card__track" style="<?php echo esc_attr( '--hexcoda-preview-bar:' . $bar_color . ';--hexcoda-preview-track:' . $track_color . ';' ); ?>">
 							<span></span>
 						</div>
 					</div>
 					<p class="hexcoda-preview-card__note"><?php esc_html_e( 'Preview illustrates how the stock bar appears on eligible product pages.', 'hexcoda-smart-stock-bar' ); ?></p>
+
+					<section class="hexcoda-info-card" aria-labelledby="hexcoda-how-it-works-title">
+						<h2 id="hexcoda-how-it-works-title"><?php esc_html_e( 'How it works', 'hexcoda-smart-stock-bar' ); ?></h2>
+						<ol>
+							<li><?php esc_html_e( 'Reads WooCommerce stock quantity', 'hexcoda-smart-stock-bar' ); ?></li>
+							<li><?php esc_html_e( 'Applies your display threshold', 'hexcoda-smart-stock-bar' ); ?></li>
+							<li><?php esc_html_e( 'Shows the bar on eligible product pages', 'hexcoda-smart-stock-bar' ); ?></li>
+						</ol>
+					</section>
 				</aside>
 			</form>
 		</div>

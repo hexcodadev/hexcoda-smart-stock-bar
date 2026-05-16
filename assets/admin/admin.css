@@ -127,7 +127,7 @@
 	font-weight: 700;
 	padding: 17px 22px;
 	vertical-align: top;
-	width: 220px;
+	width: 196px;
 }
 
 .hexcoda-panel .form-table td {
@@ -247,7 +247,17 @@
 	background: #fbfcf7;
 	border: 1px solid var(--hexcoda-border-soft);
 	border-radius: 8px;
-	padding: 16px;
+	padding: 17px;
+}
+
+.hexcoda-preview-card__label {
+	color: var(--hexcoda-muted);
+	font-size: 11px;
+	font-weight: 800;
+	letter-spacing: 0;
+	line-height: 1.2;
+	margin: 0 0 8px;
+	text-transform: uppercase;
 }
 
 .hexcoda-preview-card__message {
@@ -255,7 +265,7 @@
 	font-size: 14px;
 	font-weight: 700;
 	line-height: 1.4;
-	margin: 0 0 10px;
+	margin: 0 0 13px;
 }
 
 .hexcoda-preview-card__track {
@@ -263,7 +273,7 @@
 	--hexcoda-preview-track: #e7eadf;
 	background: var(--hexcoda-preview-track);
 	border-radius: 999px;
-	height: 8px;
+	height: 10px;
 	overflow: hidden;
 	width: 100%;
 }
@@ -281,6 +291,56 @@
 	font-size: 12px;
 	line-height: 1.5;
 	margin: 12px 0 0;
+}
+
+.hexcoda-info-card {
+	background: #ffffff;
+	border: 1px solid var(--hexcoda-border-soft);
+	border-radius: 8px;
+	margin-top: 16px;
+	padding: 17px;
+}
+
+.hexcoda-info-card h2 {
+	font-size: 15px;
+	margin: 0 0 12px;
+}
+
+.hexcoda-info-card ol {
+	counter-reset: hexcoda-steps;
+	margin: 0;
+	padding: 0;
+}
+
+.hexcoda-info-card li {
+	align-items: center;
+	color: var(--hexcoda-text);
+	counter-increment: hexcoda-steps;
+	display: flex;
+	font-size: 13px;
+	gap: 9px;
+	line-height: 1.45;
+	margin: 0 0 10px;
+}
+
+.hexcoda-info-card li:last-child {
+	margin-bottom: 0;
+}
+
+.hexcoda-info-card li::before {
+	align-items: center;
+	background: #f0f6df;
+	border: 1px solid #d8e8ae;
+	border-radius: 999px;
+	color: #587020;
+	content: counter(hexcoda-steps);
+	display: inline-flex;
+	flex: 0 0 22px;
+	font-size: 12px;
+	font-weight: 800;
+	height: 22px;
+	justify-content: center;
+	width: 22px;
 }
 
 @media (max-width: 1100px) {

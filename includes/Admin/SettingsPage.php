@@ -169,7 +169,6 @@ final class SettingsPage {
 
 				<header class="hexcoda-topbar">
 					<div class="hexcoda-topbar__identity">
-						<div class="hexcoda-mark" aria-hidden="true">H</div>
 						<div>
 							<div class="hexcoda-title-row">
 								<h1><?php esc_html_e( 'HexCoda Smart Stock Bar for WooCommerce', 'hexcoda-smart-stock-bar' ); ?></h1>

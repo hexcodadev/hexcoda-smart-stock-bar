@@ -32,24 +32,8 @@
 .hexcoda-topbar__identity {
 	align-items: center;
 	display: flex;
-	gap: 16px;
+	gap: 0;
 	min-width: 0;
-}
-
-.hexcoda-mark {
-	align-items: center;
-	background: #ffffff;
-	border: 3px solid var(--hexcoda-accent);
-	clip-path: polygon(25% 6%, 75% 6%, 100% 50%, 75% 94%, 25% 94%, 0 50%);
-	color: #32424a;
-	display: flex;
-	flex: 0 0 58px;
-	font-size: 28px;
-	font-weight: 700;
-	height: 58px;
-	justify-content: center;
-	line-height: 1;
-	width: 58px;
 }
 
 .hexcoda-title-row {

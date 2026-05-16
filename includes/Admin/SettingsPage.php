@@ -136,7 +136,9 @@ final class SettingsPage {
 			return;
 		}
 
-		$settings = get_plugin_settings();
+		$settings    = get_plugin_settings();
+		$bar_color   = sanitize_hex_color( $settings['bar_color'] ?? '#a7ca4f' ) ?: '#a7ca4f';
+		$track_color = sanitize_hex_color( $settings['track_color'] ?? '#e7eadf' ) ?: '#e7eadf';
 		?>
 		<div class="wrap hexcoda-admin">
 			<div class="hexcoda-admin__header">
@@ -154,86 +156,99 @@ final class SettingsPage {
 				</div>
 			</div>
 
-			<form action="options.php" method="post" class="hexcoda-panel">
+			<form action="options.php" method="post" class="hexcoda-admin__layout">
 				<?php settings_fields( self::GROUP ); ?>
 
-				<table class="form-table" role="presentation">
-					<tr>
-						<th scope="row"><?php esc_html_e( 'Enable stock bar', 'hexcoda-smart-stock-bar' ); ?></th>
-						<td>
-							<label>
-								<input type="checkbox" name="<?php echo esc_attr( OPTION_NAME ); ?>[enabled]" value="1" <?php checked( $settings['enabled'] ); ?>>
-								<?php esc_html_e( 'Show the stock bar on eligible product pages.', 'hexcoda-smart-stock-bar' ); ?>
-							</label>
-						</td>
-					</tr>
-					<tr>
-						<th scope="row"><label for="hexcoda-ssb-threshold"><?php esc_html_e( 'Low stock threshold', 'hexcoda-smart-stock-bar' ); ?></label></th>
-						<td>
-							<input id="hexcoda-ssb-threshold" class="small-text" type="number" min="0" name="<?php echo esc_attr( OPTION_NAME ); ?>[threshold]" value="<?php echo esc_attr( (string) $settings['threshold'] ); ?>">
-							<p class="description"><?php esc_html_e( 'Show the bar only when available stock is at or below this number. Use 0 to show whenever stock is managed.', 'hexcoda-smart-stock-bar' ); ?></p>
-						</td>
-					</tr>
-					<tr>
-						<th scope="row"><label for="hexcoda-ssb-total-stock"><?php esc_html_e( 'Reference stock amount', 'hexcoda-smart-stock-bar' ); ?></label></th>
-						<td>
-							<input id="hexcoda-ssb-total-stock" class="small-text" type="number" min="1" name="<?php echo esc_attr( OPTION_NAME ); ?>[total_stock]" value="<?php echo esc_attr( (string) $settings['total_stock'] ); ?>">
-							<p class="description"><?php esc_html_e( 'Used to calculate the bar percentage. Example: 5 left from a reference of 20 shows a 25% bar.', 'hexcoda-smart-stock-bar' ); ?></p>
-						</td>
-					</tr>
-					<tr>
-						<th scope="row"><label for="hexcoda-ssb-position"><?php esc_html_e( 'Display position', 'hexcoda-smart-stock-bar' ); ?></label></th>
-						<td>
-							<select id="hexcoda-ssb-position" name="<?php echo esc_attr( OPTION_NAME ); ?>[position]">
-								<option value="after_price" <?php selected( $settings['position'], 'after_price' ); ?>><?php esc_html_e( 'After price', 'hexcoda-smart-stock-bar' ); ?></option>
-								<option value="before_add_to_cart" <?php selected( $settings['position'], 'before_add_to_cart' ); ?>><?php esc_html_e( 'Before add to cart', 'hexcoda-smart-stock-bar' ); ?></option>
-								<option value="after_add_to_cart" <?php selected( $settings['position'], 'after_add_to_cart' ); ?>><?php esc_html_e( 'After add to cart', 'hexcoda-smart-stock-bar' ); ?></option>
-							</select>
-						</td>
-					</tr>
-					<tr>
-						<th scope="row"><label for="hexcoda-ssb-message"><?php esc_html_e( 'Message', 'hexcoda-smart-stock-bar' ); ?></label></th>
-						<td>
-							<input id="hexcoda-ssb-message" class="regular-text" type="text" name="<?php echo esc_attr( OPTION_NAME ); ?>[message]" value="<?php echo esc_attr( $settings['message'] ); ?>">
-							<p class="description"><?php esc_html_e( 'Use {stock} as the stock quantity placeholder.', 'hexcoda-smart-stock-bar' ); ?></p>
-						</td>
-					</tr>
-					<tr>
-						<th scope="row"><?php esc_html_e( 'Colors', 'hexcoda-smart-stock-bar' ); ?></th>
-						<td class="hexcoda-color-row">
-							<label>
-								<span><?php esc_html_e( 'Bar', 'hexcoda-smart-stock-bar' ); ?></span>
-								<input type="color" name="<?php echo esc_attr( OPTION_NAME ); ?>[bar_color]" value="<?php echo esc_attr( $settings['bar_color'] ); ?>">
-							</label>
-							<label>
-								<span><?php esc_html_e( 'Track', 'hexcoda-smart-stock-bar' ); ?></span>
-								<input type="color" name="<?php echo esc_attr( OPTION_NAME ); ?>[track_color]" value="<?php echo esc_attr( $settings['track_color'] ); ?>">
-							</label>
-						</td>
-					</tr>
-					<tr>
-						<th scope="row"><?php esc_html_e( 'Out of stock products', 'hexcoda-smart-stock-bar' ); ?></th>
-						<td>
-							<label>
-								<input type="checkbox" name="<?php echo esc_attr( OPTION_NAME ); ?>[show_on_empty]" value="1" <?php checked( $settings['show_on_empty'] ); ?>>
-								<?php esc_html_e( 'Show an empty bar when product stock is 0.', 'hexcoda-smart-stock-bar' ); ?>
-							</label>
-						</td>
-					</tr>
-					<tr>
-						<th scope="row"><?php esc_html_e( 'Default stock text', 'hexcoda-smart-stock-bar' ); ?></th>
-						<td>
-							<label>
-								<input type="checkbox" name="<?php echo esc_attr( OPTION_NAME ); ?>[hide_default]" value="1" <?php checked( $settings['hide_default'] ); ?>>
-								<?php esc_html_e( 'Hide the default WooCommerce stock availability text on single product pages.', 'hexcoda-smart-stock-bar' ); ?>
-							</label>
-						</td>
-					</tr>
-				</table>
+				<div class="hexcoda-panel hexcoda-panel--settings">
+					<table class="form-table" role="presentation">
+						<tr>
+							<th scope="row"><?php esc_html_e( 'Enable stock bar', 'hexcoda-smart-stock-bar' ); ?></th>
+							<td>
+								<label class="hexcoda-check-row">
+									<input type="checkbox" name="<?php echo esc_attr( OPTION_NAME ); ?>[enabled]" value="1" <?php checked( $settings['enabled'] ); ?>>
+									<span><?php esc_html_e( 'Show the stock bar on eligible product pages.', 'hexcoda-smart-stock-bar' ); ?></span>
+								</label>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row"><label for="hexcoda-ssb-threshold"><?php esc_html_e( 'Low stock threshold', 'hexcoda-smart-stock-bar' ); ?></label></th>
+							<td>
+								<input id="hexcoda-ssb-threshold" class="small-text" type="number" min="0" name="<?php echo esc_attr( OPTION_NAME ); ?>[threshold]" value="<?php echo esc_attr( (string) $settings['threshold'] ); ?>">
+								<p class="description"><?php esc_html_e( 'Show the bar only when available stock is at or below this number. Use 0 to show whenever stock is managed.', 'hexcoda-smart-stock-bar' ); ?></p>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row"><label for="hexcoda-ssb-total-stock"><?php esc_html_e( 'Maximum stock reference', 'hexcoda-smart-stock-bar' ); ?></label></th>
+							<td>
+								<input id="hexcoda-ssb-total-stock" class="small-text" type="number" min="1" name="<?php echo esc_attr( OPTION_NAME ); ?>[total_stock]" value="<?php echo esc_attr( (string) $settings['total_stock'] ); ?>">
+								<p class="description"><?php esc_html_e( 'Used to calculate the bar percentage. Example: 5 left from a reference of 20 shows a 25% bar.', 'hexcoda-smart-stock-bar' ); ?></p>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row"><label for="hexcoda-ssb-position"><?php esc_html_e( 'Display position', 'hexcoda-smart-stock-bar' ); ?></label></th>
+							<td>
+								<select id="hexcoda-ssb-position" name="<?php echo esc_attr( OPTION_NAME ); ?>[position]">
+									<option value="after_price" <?php selected( $settings['position'], 'after_price' ); ?>><?php esc_html_e( 'After price', 'hexcoda-smart-stock-bar' ); ?></option>
+									<option value="before_add_to_cart" <?php selected( $settings['position'], 'before_add_to_cart' ); ?>><?php esc_html_e( 'Before add to cart', 'hexcoda-smart-stock-bar' ); ?></option>
+									<option value="after_add_to_cart" <?php selected( $settings['position'], 'after_add_to_cart' ); ?>><?php esc_html_e( 'After add to cart', 'hexcoda-smart-stock-bar' ); ?></option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row"><label for="hexcoda-ssb-message"><?php esc_html_e( 'Message', 'hexcoda-smart-stock-bar' ); ?></label></th>
+							<td>
+								<input id="hexcoda-ssb-message" class="regular-text" type="text" name="<?php echo esc_attr( OPTION_NAME ); ?>[message]" value="<?php echo esc_attr( $settings['message'] ); ?>">
+								<p class="description"><?php esc_html_e( 'Use {stock} as the stock quantity placeholder.', 'hexcoda-smart-stock-bar' ); ?></p>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row"><?php esc_html_e( 'Colors', 'hexcoda-smart-stock-bar' ); ?></th>
+							<td class="hexcoda-color-row">
+								<label>
+									<span><?php esc_html_e( 'Bar', 'hexcoda-smart-stock-bar' ); ?></span>
+									<input type="color" name="<?php echo esc_attr( OPTION_NAME ); ?>[bar_color]" value="<?php echo esc_attr( $settings['bar_color'] ); ?>">
+								</label>
+								<label>
+									<span><?php esc_html_e( 'Track', 'hexcoda-smart-stock-bar' ); ?></span>
+									<input type="color" name="<?php echo esc_attr( OPTION_NAME ); ?>[track_color]" value="<?php echo esc_attr( $settings['track_color'] ); ?>">
+								</label>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row"><?php esc_html_e( 'Out-of-stock display', 'hexcoda-smart-stock-bar' ); ?></th>
+							<td>
+								<label class="hexcoda-check-row">
+									<input type="checkbox" name="<?php echo esc_attr( OPTION_NAME ); ?>[show_on_empty]" value="1" <?php checked( $settings['show_on_empty'] ); ?>>
+									<span><?php esc_html_e( 'Show an empty bar when product stock is 0.', 'hexcoda-smart-stock-bar' ); ?></span>
+								</label>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row"><?php esc_html_e( 'WooCommerce stock text', 'hexcoda-smart-stock-bar' ); ?></th>
+							<td>
+								<label class="hexcoda-check-row">
+									<input type="checkbox" name="<?php echo esc_attr( OPTION_NAME ); ?>[hide_default]" value="1" <?php checked( $settings['hide_default'] ); ?>>
+									<span><?php esc_html_e( 'Hide the default WooCommerce stock availability text on single product pages.', 'hexcoda-smart-stock-bar' ); ?></span>
+								</label>
+							</td>
+						</tr>
+					</table>
 
-				<div class="hexcoda-actions">
-					<?php submit_button( __( 'Save settings', 'hexcoda-smart-stock-bar' ), 'primary', 'submit', false ); ?>
+					<div class="hexcoda-actions">
+						<?php submit_button( __( 'Save settings', 'hexcoda-smart-stock-bar' ), 'primary', 'submit', false ); ?>
+					</div>
 				</div>
+
+				<aside class="hexcoda-preview-card" aria-labelledby="hexcoda-preview-title">
+					<h2 id="hexcoda-preview-title"><?php esc_html_e( 'Live Preview', 'hexcoda-smart-stock-bar' ); ?></h2>
+					<div class="hexcoda-preview-card__block">
+						<p class="hexcoda-preview-card__message"><?php esc_html_e( 'Only 4 left in stock', 'hexcoda-smart-stock-bar' ); ?></p>
+						<div class="hexcoda-preview-card__track" style="<?php echo esc_attr( '--hexcoda-preview-bar:' . $bar_color . ';--hexcoda-preview-track:' . $track_color . ';' ); ?>">
+							<span></span>
+						</div>
+					</div>
+					<p class="hexcoda-preview-card__note"><?php esc_html_e( 'Preview illustrates how the stock bar appears on eligible product pages.', 'hexcoda-smart-stock-bar' ); ?></p>
+				</aside>
 			</form>
 		</div>
 		<?php
